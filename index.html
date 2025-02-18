@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エンジニア採用 | 私たちと共に未来を創造しませんか</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1>エンジニア採用</h1>
+            <p class="hero-subtitle">私たちと共に、テクノロジーの未来を創造しませんか</p>
+            <a href="#contact" class="cta-button">応募する</a>
+        </div>
+    </header>
+
+    <section class="benefits">
+        <h2>待遇・福利厚生</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <img src="images/salary.png" alt="給与">
+                <h3>年収450万円〜850万円</h3>
+                <p>経験・スキルを考慮した給与体系</p>
+            </div>
+            <div class="benefit-item">
+                <img src="images/remote.png" alt="リモートワーク">
+                <h3>リモートワーク可能</h3>
+                <p>柔軟な働き方に対応</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>応募フォーム</h2>
+        <form id="applicationForm" class="contact-form">
+            <input type="text" name="name" placeholder="お名前" required>
+            <input type="email" name="email" placeholder="メールアドレス" required>
+            <textarea name="message" placeholder="自己PR" required></textarea>
+            <button type="submit" class="submit-button">送信する</button>
+        </form>
+        <div id="formMessage"></div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html> 
