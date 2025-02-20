@@ -5,21 +5,28 @@
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .hero {
-    position: relative;
-    margin: 75.6px 0;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/engineer-working.jpg');
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* 水平方向の中央揃え */
+    justify-content: center;  /* 垂直方向の中央揃え */
+    text-align: center;
+    min-height: 100vh;  /* 画面の高さいっぱいに */
+    background-image: url('path/to/your/background-image.jpg');  /* 背景画像 */
     background-size: cover;
     background-position: center;
-    height: calc(100vh - 151.2px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    color: white;  /* テキストを白色に */
+    padding: 2rem;
 }
 
 .logo-wrapper {
@@ -59,33 +66,28 @@ body {
     padding: 2rem;
 }
 
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    color: #ffffff;
-    text-shadow: 
-        0 0 10px #00ff00,
-        0 0 20px #00ff00,
-        0 0 30px #00ff00,
-        2px 2px 4px rgba(0,0,0,0.8);
-    font-weight: bold;
-    animation: glow 2s ease-in-out infinite alternate;
+@keyframes gradientText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-@keyframes glow {
-    from {
-        text-shadow: 
-            0 0 10px #0066ff,
-            0 0 20px #0066ff,
-            0 0 30px #0066ff;
-    }
-    to {
-        text-shadow: 
-            0 0 20px #0066ff,
-            0 0 30px #0066ff,
-            0 0 40px #0066ff,
-            0 0 50px #0066ff;
-    }
+.hero h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    z-index: 10;
+    letter-spacing: 4px;
+    color: #ffffff;  /* 純白に戻す */
+    text-shadow: 
+        3px 3px 0 rgba(0, 0, 0, 0.8),  /* より濃い影 */
+        0 0 20px rgba(255, 255, 255, 0.4);  /* 光る効果を残す */
+    animation: fadeInUp 1s ease-out;  /* アニメーションは維持 */
 }
 
 .hero-subtitle {
@@ -94,87 +96,148 @@ body {
 }
 
 .hero p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    color: #ffffff;
-    text-shadow: 
-        2px 2px 4px rgba(0,0,0,0.8),
-        0 0 10px #00ff00;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
     font-weight: bold;
+    text-align: center;
+    width: 100%;
+    z-index: 10;
+    color: #E0FFFF;
+    text-shadow: 
+        2px 2px 0 rgba(0, 0, 0, 0.7),
+        0 0 10px rgba(224, 255, 255, 0.8);
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 0%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .button-group {
+    position: absolute;
+    top: 75%;  /* pタグの下に配置 */
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
-    gap: 20px;  /* ボタン間の間隔 */
+    gap: 20px;
     justify-content: center;
+    z-index: 10;
 }
 
-.cta-button {
+.hero .button-group .cta-button {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: #007bff;
+    background: linear-gradient(to right, #0066cc, #00cc99);
     color: white;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
-.cta-button:hover {
-    background-color: #0056b3;
+.hero .button-group .cta-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
 .benefits {
-    padding: 3rem 2rem 10rem 2rem;  /* 上部のpaddingを減らし、下部のpaddingを維持 */
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    padding: 1rem 2rem 8rem 2rem;  /* 上部のpaddingを1remにさらに減らす */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.benefits-title {
     text-align: center;
-    font-size: 50px;
+    font-size: 32px;
     font-weight: bold;
+    margin-bottom: 4rem;
     color: #333;
-    margin-bottom: 5rem;
 }
 
 .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;  /* 上部のマージンを減らす */
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 1000px;  /* 全体の幅を制限 */
+    margin: 0 auto;
 }
 
 .benefit-item {
-    position: relative;
-    margin-bottom: 100px;  /* 下の余白を増やして説明欄のスペースを確保 */
-    border: 5px solid; /* 枠線の太さを指定 */
-    border-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet) 1; /* 虹色のグラデーション */
-    border-radius: 10px; /* 角を丸くする場合 */
-    padding: 20px; /* 内側の余白を追加 */
-    margin: 20px; /* 外側の余白を追加 */
-    text-align: center; /* 中央揃え */
-    font-size: 16px; /* フォントサイズを元に戻す */
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100%;  /* 幅を100%に */
+    gap: 2rem;    /* 画像とテキストの間隔 */
 }
 
-.benefit-item img {
-    /* 画像がない場合、一時的にサイズを指定 */
-    width: 64px;
-    height: 64px;
-    background-color: #ddd;
-    border-radius: 50%;
-    margin-bottom: 1rem;
+.benefit-item:nth-child(even) {
+    flex-direction: row-reverse;
 }
 
-.hover-content {
-    position: absolute;
-    top: 100%;  /* 枠の直下から表示開始 */
-    left: 0;
+.benefit-image {
+    width: 50%;   /* 画像部分を50%に */
+    height: 300px;  /* 高さを固定 */
+}
+
+.benefit-image img {
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);  /* 背景色（半透明） */
-    padding: 20px;
-    opacity: 0;  /* 初期状態では非表示 */
-    transition: opacity 0.3s ease;  /* フェードインアニメーション */
-    z-index: 1;  /* 他の要素の上に表示 */
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
 }
 
-.benefit-item:hover .hover-content {
-    opacity: 1;  /* ホバー時に表示 */
+.benefit-content {
+    width: 50%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* 中央揃え */
+}
+
+.benefit-content h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    letter-spacing: 1px;
+    white-space: nowrap;  /* 改行を防ぐ */
+    overflow: hidden;     /* はみ出した部分を隠す */
+    text-overflow: ellipsis;  /* 必要な場合は省略記号を表示 */
+}
+
+.benefit-content .sub-title {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.benefit-item p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #666;
 }
 
 .contact {
@@ -220,4 +283,255 @@ input, textarea {
 
 .shake {
     animation: shake 0.5s infinite;  /* 0.5秒で無限に繰り返す */
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: white;  /* ヘッダーに白背景を追加 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* 軽い影を追加してヘッダーを区別 */
+}
+
+.logo-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1001;
+}
+
+.logo {
+    width: 40px;  /* ロゴのサイズは実際の画像に合わせて調整してください */
+    height: auto;
+}
+
+.company-name {
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.header-right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    flex-direction: row;  /* 横方向に配置 */
+    align-items: baseline;  /* ベースラインで揃える */
+}
+
+.contact-button, .login-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s;
+    width: 140px;
+    height: 45px;
+    color: white;
+    font-size: 16px;
+    background: linear-gradient(to right, #0066cc, #00cc99);
+    border: none;
+    white-space: nowrap;
+    line-height: 45px;  /* 高さと同じ値で行の高さを設定 */
+}
+
+.contact-button:hover, .login-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.login-link {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #28a745;  /* 緑色のボタン */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.login-link:hover {
+    background-color: #218838;
+}
+
+.register-button {
+    padding: 1rem;
+    background-color: #28a745;  /* 緑色のボタン */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;  /* ログインボタンとの間隔 */
+}
+
+.register-button:hover {
+    background-color: #218838;  /* ホバー時の色 */
+}
+
+.login-container {
+    width: 100%;
+    max-width: 480px;
+    padding: 2rem;
+}
+
+.login-box {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.social-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.divider {
+    text-align: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+.divider span {
+    background: white;
+    padding: 0 1rem;
+    color: #666;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    transition: all 0.3s;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+    top: 0;
+    transform: translateY(-50%) scale(0.8);
+    background: white;
+    padding: 0 0.5rem;
+}
+
+.show-password {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    color: #0066cc;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+}
+
+.login-button {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to right, #0066cc, #00cc99);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+}
+
+.register-link {
+    text-align: center;
+    color: #666;
+}
+
+.register-link a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    padding-top: 100px;  /* ヘッダーの高さ分の余白 */
 } 
