@@ -9,24 +9,27 @@ body {
     padding: 0;
     font-family: 'Noto Sans JP', sans-serif;
     background-color: #f5f7fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    padding-top: 80px;
+    overflow-x: hidden;
 }
 
 .hero {
     display: flex;
     flex-direction: column;
-    align-items: center;  /* 水平方向の中央揃え */
-    justify-content: center;  /* 垂直方向の中央揃え */
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    min-height: 100vh;  /* 画面の高さいっぱいに */
-    background-image: url('path/to/your/background-image.jpg');  /* 背景画像 */
-    background-size: cover;
-    background-position: center;
-    color: white;  /* テキストを白色に */
+    min-height: 100vh;
+    position: relative;
+    color: white;
     padding: 2rem;
+    width: 100%;
+    margin: 0;
 }
 
 .logo-wrapper {
@@ -52,8 +55,8 @@ body {
 .hero::before {
     content: '';
     position: absolute;
-    top: 75.6px;
-    bottom: 75.6px;
+    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./images/engineer-working.jpg');
@@ -83,11 +86,11 @@ body {
     width: 100%;
     z-index: 10;
     letter-spacing: 4px;
-    color: #ffffff;  /* 純白に戻す */
+    color: #ffffff;
     text-shadow: 
-        3px 3px 0 rgba(0, 0, 0, 0.8),  /* より濃い影 */
-        0 0 20px rgba(255, 255, 255, 0.4);  /* 光る効果を残す */
-    animation: fadeInUp 1s ease-out;  /* アニメーションは維持 */
+        3px 3px 0 rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.4);
+    animation: fadeInUp 1s ease-out;
 }
 
 .hero-subtitle {
@@ -125,7 +128,7 @@ body {
 
 .button-group {
     position: absolute;
-    top: 75%;  /* pタグの下に配置 */
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -152,7 +155,7 @@ body {
 
 .benefits {
     background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-    padding: 1rem 2rem 8rem 2rem;  /* 上部のpaddingを1remにさらに減らす */
+    padding: 1rem 2rem 8rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -161,16 +164,43 @@ body {
     text-align: center;
     font-size: 32px;
     font-weight: bold;
+    margin-top: 4rem;
     margin-bottom: 4rem;
     color: #333;
+    animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-2px, 0px) rotate(1deg); }
+    30% { transform: translate(2px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-2px, 1px) rotate(0deg); }
+    70% { transform: translate(2px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
 .benefits-grid {
     display: flex;
     flex-direction: column;
     gap: 4rem;
-    max-width: 1000px;  /* 全体の幅を制限 */
+    max-width: 1000px;
     margin: 0 auto;
+}
+
+.benefits-grid > div {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1.2s ease;
+}
+
+.benefits-grid > div.fade-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .benefit-item {
@@ -180,8 +210,8 @@ body {
     border-radius: 20px;
     padding: 2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    width: 100%;  /* 幅を100%に */
-    gap: 2rem;    /* 画像とテキストの間隔 */
+    width: 100%;
+    gap: 2rem;
 }
 
 .benefit-item:nth-child(even) {
@@ -189,8 +219,8 @@ body {
 }
 
 .benefit-image {
-    width: 50%;   /* 画像部分を50%に */
-    height: 300px;  /* 高さを固定 */
+    width: 50%;
+    height: 300px;
 }
 
 .benefit-image img {
@@ -205,7 +235,7 @@ body {
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    align-items: center;  /* 中央揃え */
+    align-items: center;
 }
 
 .benefit-content h3 {
@@ -222,9 +252,9 @@ body {
     justify-content: center;
     padding: 0.5rem 1rem;
     letter-spacing: 1px;
-    white-space: nowrap;  /* 改行を防ぐ */
-    overflow: hidden;     /* はみ出した部分を隠す */
-    text-overflow: ellipsis;  /* 必要な場合は省略記号を表示 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .benefit-content .sub-title {
@@ -261,16 +291,18 @@ input, textarea {
 
 .submit-button {
     padding: 1rem;
-    background-color: #007bff;
+    background: linear-gradient(to right, #0066cc, #00cc99);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.1rem;
+    transition: all 0.3s ease;
 }
 
 .submit-button:hover {
-    background-color: #0056b3;
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
 @keyframes shake {
@@ -282,7 +314,7 @@ input, textarea {
 }
 
 .shake {
-    animation: shake 0.5s infinite;  /* 0.5秒で無限に繰り返す */
+    animation: shake 0.5s infinite;
 }
 
 .header {
@@ -291,13 +323,15 @@ input, textarea {
     left: 0;
     width: 100%;
     height: 80px;
-    background-color: white;  /* ヘッダーに白背景を追加 */
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* 軽い影を追加してヘッダーを区別 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .logo-container {
@@ -311,7 +345,7 @@ input, textarea {
 }
 
 .logo {
-    width: 40px;  /* ロゴのサイズは実際の画像に合わせて調整してください */
+    width: 40px;
     height: auto;
 }
 
@@ -328,8 +362,8 @@ input, textarea {
     position: fixed;
     top: 20px;
     right: 20px;
-    flex-direction: row;  /* 横方向に配置 */
-    align-items: baseline;  /* ベースラインで揃える */
+    flex-direction: row;
+    align-items: baseline;
 }
 
 .contact-button, .login-button {
@@ -348,7 +382,7 @@ input, textarea {
     background: linear-gradient(to right, #0066cc, #00cc99);
     border: none;
     white-space: nowrap;
-    line-height: 45px;  /* 高さと同じ値で行の高さを設定 */
+    line-height: 45px;
 }
 
 .contact-button:hover, .login-button:hover {
@@ -359,7 +393,7 @@ input, textarea {
 .login-link {
     display: inline-block;
     padding: 0.8rem 1.5rem;
-    background-color: #28a745;  /* 緑色のボタン */
+    background-color: #28a745;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -373,18 +407,18 @@ input, textarea {
 
 .register-button {
     padding: 1rem;
-    background-color: #28a745;  /* 緑色のボタン */
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 1rem;  /* ログインボタンとの間隔 */
+    margin-top: 1rem;
 }
 
 .register-button:hover {
-    background-color: #218838;  /* ホバー時の色 */
+    background-color: #218838;
 }
 
 .login-container {
@@ -530,8 +564,4 @@ h1 {
     color: #0066cc;
     text-decoration: none;
     font-weight: bold;
-}
-
-.container {
-    padding-top: 100px;  /* ヘッダーの高さ分の余白 */
 } 

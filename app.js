@@ -31,8 +31,46 @@ const handleDOMLoad = () => {
             formMessage.className = 'form-message error';
         }
     });
+
+    // benefits-gridのアニメーション処理を追加
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const items = entry.target.children;
+                Array.from(items).forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('fade-in');
+                    }, index * 400); // 200ms から 400ms に変更
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    // benefits-gridを監視対象に追加
+    const benefitsGrid = document.querySelector('.benefits-grid');
+    if (benefitsGrid) {
+        observer.observe(benefitsGrid);
+    }
 };
 
-document.addEventListener('DOMContentLoaded', handleDOMLoad);
-            <a href="#contact" class="cta-button">応募する</a>
+// ページ読み込み時の処理
+window.onload = function() {
+    // URLからハッシュを削除して最上部にスクロール
+    if (window.location.hash) {
+        window.location.hash = '';
+        window.scrollTo(0, 0);
+    }
+};
+
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    window.scrollTo(0, 0);
+    handleDOMLoad();
+});
    
