@@ -30,6 +30,7 @@ body {
     width: 100%;
     margin: 0;
     text-align: center;
+    background-color: transparent !important;
 }
 
 .logo-wrapper {
@@ -59,10 +60,11 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./images/engineer-working.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), var(--bg-image);
     background-size: cover;
     background-position: center;
     z-index: -1;
+    background-color: transparent !important;
 }
 
 .hero-content {
@@ -156,27 +158,10 @@ body {
 }
 
 .benefits-title {
-    text-align: center;
-    font-size: 32px;
-    font-weight: bold;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    font-size: 2rem;
     color: #333;
-    animation: shake 0.5s infinite;
-}
-
-@keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-2px, 0px) rotate(1deg); }
-    30% { transform: translate(2px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-2px, 1px) rotate(0deg); }
-    70% { transform: translate(2px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
 .benefits-grid {
@@ -202,11 +187,13 @@ body {
     display: flex;
     align-items: center;
     background: #ffffff;
-    border-radius: 20px;
-    padding: 2rem;
+    border-radius: 15px;
+    padding: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     width: 100%;
-    gap: 2rem;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .benefit-item:nth-child(even) {
@@ -214,8 +201,8 @@ body {
 }
 
 .benefit-image {
-    width: 50%;
-    height: 300px;
+    width: 40%;
+    height: 200px;
 }
 
 .benefit-image img {
@@ -226,17 +213,17 @@ body {
 }
 
 .benefit-content {
-    width: 50%;
-    padding: 2rem;
+    width: 60%;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .benefit-content h3 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: #333;
     text-align: center;
     width: 100%;
@@ -260,8 +247,8 @@ body {
 }
 
 .benefit-item p {
-    font-size: 16px;
-    line-height: 1.8;
+    font-size: 14px;
+    line-height: 1.6;
     color: #666;
 }
 
@@ -773,6 +760,39 @@ h1 {
     flex: 1;
     max-width: 280px;
     position: relative;
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+.flow-item.animate {
+    animation: slideIn 0.8s ease forwards;
+}
+
+.flow-item:nth-child(1).animate {
+    animation-delay: 0s;
+}
+
+.flow-item:nth-child(2).animate {
+    animation-delay: 0.3s;
+}
+
+.flow-item:nth-child(3).animate {
+    animation-delay: 0.6s;
+}
+
+.flow-item:nth-child(4).animate {
+    animation-delay: 0.9s;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .step-number {
@@ -847,13 +867,39 @@ h1 {
     line-height: 1.6;
 }
 
-.blue-badge {
-    background: #0066cc;
+/* アニメーションの定義 */
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.blue-badge, .green-badge {
+    background: #ff0000;
     color: white;
     padding: 0.2rem 1rem;
     border-radius: 4px;
     display: inline-block;
     margin: 0 0.3rem;
+    animation: bounce 1s ease infinite;  /* アニメーションを追加 */
+    /* アニメーションの動きを滑らかに */
+    transform-origin: center;
+    will-change: transform;
+}
+
+/* それぞれのバッジで少しタイミングをずらす */
+.blue-badge {
+    animation-delay: 0s;
+}
+
+.green-badge {
+    animation-delay: 0.5s;  /* 0.5秒遅れて開始 */
 }
 
 .company-offer p {
@@ -945,8 +991,8 @@ h1 {
 .register-btn {
     display: inline-block;
     padding: 1rem 3rem;
-    background: #ffc107;
-    color: #333;
+    background: linear-gradient(to right, #0066cc, #00cc99);
+    color: white;
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
@@ -956,13 +1002,20 @@ h1 {
 
 .register-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 0.9;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .terms-text {
     font-size: 0.9rem;
     color: #666;
     line-height: 1.6;
+}
+
+/* 利用規約とプライバシーポリシーにアンダーライン追加 */
+.terms-text a {
+    text-decoration: underline;
+    color: #666;
 }
 
 /* 奇数番目のSTEP（1, 3）を#0066ccに */
@@ -990,4 +1043,4 @@ h1 {
 
 .flow-item:nth-child(4) .step-number {
     background: #00cc99;
-} 
+}
